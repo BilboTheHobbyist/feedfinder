@@ -32,3 +32,30 @@ def findfeed(site):
             if url not in result:
                 result.append(url)
     return(result)
+
+# extracts all the urls from the specified file
+def get_urls(input_path):    
+    url_file = open(input_path)
+    all_urls = []
+    for lines in url_file:
+        words = lines.split()
+        for j in words:
+            all_urls.append(j.replace(" ",""))
+    return all_urls
+
+# writes all the RSS links to the specified output file
+def write_to_file(rss_urls, output_file):
+    rss_file = open(output_file,'a')
+    for i in rss_urls:
+        rss_file.write(str(i))
+        rss_file.write("\n")
+    rss_file.close()
+
+#specify the input and output file paths
+def take_inputs():
+    input_file = input('Enter the path to source file containing the required urls:\n')
+    output_file = input('Enter the path to destination file where the RSS links will be written:\n')
+    main_program(input_file, output_file)
+
+take_inputs()
+
